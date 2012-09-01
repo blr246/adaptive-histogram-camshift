@@ -18,7 +18,12 @@ The results from this tracker will vary greatly depending upon:
  - Similarity between the tracked object and the background
  - Tuning of the supplied parameters visible as sliders in the tracker GUI
 
-Contact the author at brandon@brandonreiss.com.
+For more information regarding an application of this tracker, see how it was
+used as a hand tracker to drive a digital puppet. The writeup of that project
+is available at https://files.nyu.edu/na712/public/mocap/demos.html.
+
+Contact the author at brandon@brandonreiss.com. Visit http://brandonreiss.com
+to learn more about current projects.
 
 II. USAGE
 

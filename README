@@ -1,0 +1,66 @@
+Copyright (C) 2011-2012 Brandon L. Reiss
+brandon@brandonreiss.com
+
+I. INTRODUCTION
+This code provides an implementation for a CamShift-based color tracker that
+uses an online updating scheme to update the histogram describing the tracked
+image patch. The technique takes subdivisions of a predefined size around the
+tracker Region of Interest (ROI) output and ranks them based on similarity to
+the histogram describing the tracked object color. Patches are then weighted
+into the current histogram based on the update weight so that the tracker may
+adapt to slight changes in illumination or other appearance changes caused by
+the object in motion.
+
+The results from this tracker will vary greatly depending upon:
+ - The environment's lighting conditions
+ - The quality of the video capture device
+ - The framerate of the video capture device
+ - Similarity between the tracked object and the background
+ - Tuning of the supplied parameters visible as sliders in the tracker GUI
+
+Contact the author at brandon@brandonreiss.com.
+
+II. USAGE
+
+Run the application making sure that you have a capture device connected.
+When the demo begins, you will see the tracker GUI along with various windows
+displaying live updates of the video stream.
+
+To initialize the tracker, left click and drag the mouse around a ROI in the
+main video window. The view will update to indicate the selection, and upon
+releasing the mouse it will compute an initial histogram and begin tracking the
+colored patch. The ellipse shape is the actual tracker output whereas the box
+shows the search window used to initialize the tracker in the next frame. The
+tracker uses a simple first-order filter to predict the velocity of the tracked
+object and update the track window accordingly.
+
+While tracking, updates to the histogram appear as the colored bars comprising
+the histogram change height. Try adjusting the parameters and viewing the
+subsequent change in the grayscale backprojection output. This will indicate
+how much of the global image region is similar to the histogram being tracked.
+To get good results, adjust the parameters so that the tracked object is as
+unique as possible in the image. This means that the tracked object has the
+most significant blob of white pixels in the backproject view while all other
+image regions are dark.
+
+III. COMPILATION
+
+Download and extract the source code to your preferred path SOURCE_ROOT. To
+create build materials for your platform, use the following commands
+  $ cd SOURCE_ROOT
+  $ mkdir build
+  $ cd build
+  $ cmake ../
+where SOURCE_ROOT is the actual path where the source package was extracted. If
+CMake gives no errors, then you will have a full set of makefiles, Visual
+Studio projects, or other files associated with your platform located in the
+build subdirectory of SOURCE_ROOT. See '$ cmake --help' for more information on
+supported compilers.
+
+On Windows platforms, you will need to copy manually the Intel Thread Building
+Blocks (TBB) DLLs manually into the build folder in order to run the
+application.
+
+This application has not been built on Linux at any time recently, although
+much of the code should be portable. I'd say give it a shot!
+
